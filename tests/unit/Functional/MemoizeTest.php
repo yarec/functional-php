@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2011-2013 by Lars Strojny <lstrojny@php.net>
+ * Copyright (C) 2011-2014 by Lars Strojny <lstrojny@php.net>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -170,7 +170,7 @@ class MemoizeTest extends AbstractTestCase
 
     public function testPassNoCallable()
     {
-        $this->expectArgumentError("Functional\memoize() expects parameter 1 to be a valid callback, function 'invalidFunction' not found or invalid function name");
+        $this->expectArgumentError();
         memoize('invalidFunction');
     }
 }

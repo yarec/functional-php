@@ -1,6 +1,6 @@
 <?php
 /**
-* Copyright (C) 2011-2013 by Max Beutel <me@maxbeutel.de>, Lars Strojny <lstrojny@php.net>
+* Copyright (C) 2011-2014 by Max Beutel <me@maxbeutel.de>, Lars Strojny <lstrojny@php.net>
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -33,27 +33,35 @@ use Traversable;
  * @param bool $strict
  * @return array
  */
-function unique($collection, $callback = null, $strict = true)
+function unique($collection, callable $callback = null, $strict = true)
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
-    if ($callback != null) {
-        InvalidArgumentException::assertCallback($callback, __FUNCTION__, 2);
-    }
 
-    $indexes = array();
-    $aggregation = array();
-    foreach ($collection as $key => $element) {
+    $indexes = [];
+    $aggregation = [];
 
-        if ($callback) {
-            $index = call_user_func($callback, $element, $key, $collection);
-        } else {
+    if ($callback === null) {
+
+        foreach ($collection as $key => $element) {
+
             $index = $element;
+
+            if (!in_array($index, $indexes, $strict)) {
+                $aggregation[$key] = $element;
+
+                $indexes[] = $index;
+            }
         }
+    } else {
+        foreach ($collection as $key => $element) {
 
-        if (!in_array($index, $indexes, $strict)) {
-            $aggregation[$key] = $element;
+            $index = $callback($element, $key, $collection);
 
-            $indexes[] = $index;
+            if (!in_array($index, $indexes, $strict)) {
+                $aggregation[$key] = $element;
+
+                $indexes[] = $index;
+            }
         }
     }
 

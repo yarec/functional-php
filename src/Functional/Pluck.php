@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2011-2013 by Lars Strojny <lstrojny@php.net>
+ * Copyright (C) 2011-2014 by Lars Strojny <lstrojny@php.net>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ function pluck($collection, $propertyName)
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
     InvalidArgumentException::assertPropertyName($propertyName, __FUNCTION__, 2);
 
-    $aggregation = array();
+    $aggregation = [];
 
     foreach ($collection as $index => $element) {
 

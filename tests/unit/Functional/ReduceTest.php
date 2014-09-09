@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2011-2013 by Lars Strojny <lstrojny@php.net>
+ * Copyright (C) 2011-2014 by Lars Strojny <lstrojny@php.net>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -106,7 +106,7 @@ class ReduceTest extends AbstractTestCase
 
     function testPassNonCallableToReduceLeft()
     {
-        $this->expectArgumentError("Functional\\reduce_left() expects parameter 2 to be a valid callback, function 'undefinedFunction' not found or invalid function name");
+        $this->expectArgumentError();
         reduce_left($this->array, 'undefinedFunction');
     }
 
@@ -118,7 +118,7 @@ class ReduceTest extends AbstractTestCase
 
     function testPassNonCallableToReduceRight()
     {
-        $this->expectArgumentError("Functional\\reduce_right() expects parameter 2 to be a valid callback, function 'undefinedFunction' not found or invalid function name");
+        $this->expectArgumentError();
         reduce_right($this->array, 'undefinedFunction');
     }
 }

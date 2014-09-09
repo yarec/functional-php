@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2011-2013 by Lars Strojny <lstrojny@php.net>
+ * Copyright (C) 2011-2014 by Lars Strojny <lstrojny@php.net>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,11 +32,11 @@ namespace Functional;
  * @param mixed $defaultValue
  * @return mixed
  */
-function invoke_if($object, $methodName, array $methodArguments = array(), $defaultValue = null)
+function invoke_if($object, $methodName, array $methodArguments = [], $defaultValue = null)
 {
-    $callback = array($object, $methodName);
+    $callback = [$object, $methodName];
     if (is_callable($callback)) {
-        return call_user_func_array($callback, $methodArguments);
+        return $callback(...$methodArguments);
     }
 
     return $defaultValue;

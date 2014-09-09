@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2011-2013 by Lars Strojny <lstrojny@php.net>
+ * Copyright (C) 2011-2014 by Lars Strojny <lstrojny@php.net>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,55 +24,6 @@ namespace Functional\Exceptions;
 
 class InvalidArgumentException extends \InvalidArgumentException
 {
-    public static function assertCallback($callback, $callee, $parameterPosition)
-    {
-        if (!is_callable($callback)) {
-
-            if (!is_array($callback) and !is_string($callback)) {
-                throw new static(
-                    sprintf(
-                        '%s() expected parameter %d to be a valid callback, no array, string, closure or functor given',
-                        $callee,
-                        $parameterPosition
-                    )
-                );
-            }
-
-            $type = gettype($callback);
-            switch ($type) {
-
-                case 'array':
-                    $type = 'method';
-                    $callback = array_values($callback);
-
-                    $sep = '::';
-                    if (is_object($callback[0])) {
-                        $callback[0] = get_class($callback[0]);
-                        $sep = '->';
-                    }
-
-                    $callback = join($callback, $sep);
-                    break;
-
-                default:
-                    $type = 'function';
-                    $callback = $callback;
-                    break;
-            }
-
-            throw new static(
-                sprintf(
-                    "%s() expects parameter %d to be a valid callback, %s '%s' not found or invalid %s name",
-                    $callee,
-                    $parameterPosition,
-                    $type,
-                    $callback,
-                    $type
-                )
-            );
-        }
-    }
-
     public static function assertCollection($collection, $callee, $parameterPosition)
     {
         if (!is_array($collection) and !$collection instanceof \Traversable) {
@@ -134,7 +85,7 @@ class InvalidArgumentException extends \InvalidArgumentException
 
     public static function assertValidArrayKey($key, $callee)
     {
-        $keyTypes = array('NULL', 'string', 'integer', 'double', 'boolean');
+        $keyTypes = ['NULL', 'string', 'integer', 'double', 'boolean'];
 
         $keyType = gettype($key);
 
@@ -150,7 +101,7 @@ class InvalidArgumentException extends \InvalidArgumentException
             );
         }
     }
-    
+
     public static function assertArrayKeyExists($collection, $key, $callee)
     {
     	if (!isset($collection[$key])) {

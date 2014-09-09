@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2011-2013 by Lars Strojny <lstrojny@php.net>
+ * Copyright (C) 2011-2014 by Lars Strojny <lstrojny@php.net>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,19 +32,23 @@ use Traversable;
  * @param callable $callback
  * @return mixed
  */
-function last($collection, $callback = null)
+function last($collection, callable $callback = null)
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 
-    if ($callback !== null) {
-        InvalidArgumentException::assertCallback($callback, __FUNCTION__, 2);
-    }
-
     $match = null;
-    foreach ($collection as $index => $element) {
+    if ($callback === null) {
 
-        if ($callback === null || call_user_func($callback, $element, $index, $collection)) {
+        foreach ($collection as $index => $element) {
             $match = $element;
+        }
+
+    } else {
+
+        foreach ($collection as $index => $element) {
+            if ($callback($element, $index, $collection)) {
+                $match = $element;
+            }
         }
 
     }

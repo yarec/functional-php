@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2011-2013 by Lars Strojny <lstrojny@php.net>
+ * Copyright (C) 2011-2014 by Lars Strojny <lstrojny@php.net>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,14 +31,13 @@ use Traversable;
  * @param mixed $initial
  * @return array
  */
-function reduce_left($collection, $callback, $initial = null)
+function reduce_left($collection, callable $callback, $initial = null)
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
-    InvalidArgumentException::assertCallback($callback, __FUNCTION__, 2);
 
     foreach ($collection as $index => $value) {
 
-        $initial = call_user_func($callback, $value, $index, $collection, $initial);
+        $initial = $callback($value, $index, $collection, $initial);
 
     }
 

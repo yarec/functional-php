@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2011-2013 by Lars Strojny <lstrojny@php.net>
+ * Copyright (C) 2011-2014 by Lars Strojny <lstrojny@php.net>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,14 +33,13 @@ use Traversable;
  * @param callable $callback
  * @return bool
  */
-function none($collection, $callback)
+function none($collection, callable $callback)
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
-    InvalidArgumentException::assertCallback($callback, __FUNCTION__, 2);
 
     foreach ($collection as $index => $element) {
 
-        if (call_user_func($callback, $element, $index, $collection)) {
+        if ($callback($element, $index, $collection)) {
             return false;
         }
 

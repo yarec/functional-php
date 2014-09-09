@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2011-2013 by Lars Strojny <lstrojny@php.net>
+ * Copyright (C) 2011-2014 by Lars Strojny <lstrojny@php.net>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,56 +24,6 @@ namespace Functional\Exceptions;
 
 class InvalidArgumentExceptionTest extends \PHPUnit_Framework_TestCase
 {
-    function testCallbackExceptionWithUndefinedStaticMethod()
-    {
-        $this->setExpectedException(
-            'Functional\Exceptions\InvalidArgumentException',
-            "func() expects parameter 1 to be a valid callback, method 'stdClass::method' not found or invalid method name"
-        );
-
-        InvalidArgumentException::assertCallback(array('stdClass', 'method'), 'func', 1);
-    }
-
-    function testCallbackExceptionWithUndefinedFunction()
-    {
-        $this->setExpectedException(
-            'Functional\Exceptions\InvalidArgumentException',
-            "func() expects parameter 1 to be a valid callback, function 'undefinedFunction' not found or invalid function name"
-        );
-
-        InvalidArgumentException::assertCallback('undefinedFunction', 'func', 1);
-    }
-
-    function testCallbackExceptionWithUndefinedMethod()
-    {
-        $this->setExpectedException(
-            'Functional\Exceptions\InvalidArgumentException',
-            "func() expects parameter 2 to be a valid callback, method 'stdClass->method' not found or invalid method name"
-        );
-
-        InvalidArgumentException::assertCallback(array(new \stdClass(), 'method'), 'func', 2);
-    }
-
-    function testCallbackExceptionWithIncorrectArrayIndex()
-    {
-        $this->setExpectedException(
-            'Functional\Exceptions\InvalidArgumentException',
-            "func() expects parameter 1 to be a valid callback, method 'stdClass->method' not found or invalid method name"
-        );
-
-        InvalidArgumentException::assertCallback(array(1 => new \stdClass(), 2 => 'method'), 'func', 1);
-    }
-
-    function testCallbackExceptionWithObject()
-    {
-        $this->setExpectedException(
-            'Functional\Exceptions\InvalidArgumentException',
-            'func() expected parameter 1 to be a valid callback, no array, string, closure or functor given'
-        );
-
-        InvalidArgumentException::assertCallback(new \stdClass(), 'func', 1);
-    }
-
     function testExceptionIfStringIsPassedAsList()
     {
         $this->setExpectedException(

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2011-2013 by David Soria Parra <dsp@php.net>
+ * Copyright (C) 2011-2014 by David Soria Parra <dsp@php.net>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,8 +36,8 @@ function flatten($collection)
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 
-    $stack = array($collection);
-    $result = array();
+    $stack = [$collection];
+    $result = [];
 
     while ($stack) {
         $item = array_shift($stack);

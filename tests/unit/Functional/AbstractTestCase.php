@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2011-2013 by Lars Strojny <lstrojny@php.net>
+ * Copyright (C) 2011-2014 by Lars Strojny <lstrojny@php.net>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -52,27 +52,9 @@ class AbstractTestCase extends TestCase
         }
     }
 
-    function expectArgumentError($message)
+    function expectArgumentError($message = null)
     {
-        try {
-            $extension = new \ReflectionExtension('functional');
-            $extensionFunctions = array_keys($extension->getFunctions());
-
-            $isDefinedInExtension = F\every(
-                $this->functions,
-                function ($function) use ($extensionFunctions) {
-                    return in_array($function, $extensionFunctions, true);
-                }
-            );
-
-            if ($isDefinedInExtension) {
-                $this->setExpectedException('PHPUnit_Framework_Error_Warning', $message);
-            } else {
-                $this->setExpectedException('Functional\Exceptions\InvalidArgumentException', $message);
-            }
-        } catch (\ReflectionException $e) {
-            $this->setExpectedException('Functional\Exceptions\InvalidArgumentException', $message);
-        }
+        $this->setExpectedException('Exception', $message);
     }
 
     function exception()

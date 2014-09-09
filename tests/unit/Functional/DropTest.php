@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2011-2013 by Lars Strojny <lstrojny@php.net>
+ * Copyright (C) 2011-2014 by Lars Strojny <lstrojny@php.net>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -95,7 +95,7 @@ class DropTest extends AbstractTestCase
     /** @dataProvider getFunctions */
     function testPassNonCallable($fn)
     {
-        $this->expectArgumentError($fn . "() expects parameter 2 to be a valid callback, function 'undefinedFunction' not found or invalid function name");
+        $this->expectArgumentError();
         $fn($this->array, 'undefinedFunction');
     }
 }

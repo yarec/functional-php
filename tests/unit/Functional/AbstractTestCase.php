@@ -34,8 +34,8 @@ class AbstractTestCase extends TestCase
     {
         $this->functions = F\flatten(
             func_num_args() > 0
-               ? func_get_arg(0)
-               : array(ucfirst(strtolower(str_replace('Test', '', get_class($this)))))
+            ? func_get_arg(0)
+            : array(ucfirst(strtolower(str_replace('Test', '', get_class($this)))))
         );
 
         foreach ($this->functions as $function) {

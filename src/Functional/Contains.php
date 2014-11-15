@@ -38,10 +38,20 @@ function contains($collection, $value, $strict = true)
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 
-    foreach ($collection as $element) {
+    if ($strict) {
 
-        if ($value === $element || (!$strict && $value == $element)) {
-            return true;
+        foreach ($collection as $element) {
+            if ($value === $element) {
+                return true;
+            }
+        }
+
+    } else {
+
+        foreach ($collection as $element) {
+            if ($value == $element) {
+                return true;
+            }
         }
 
     }

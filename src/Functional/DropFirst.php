@@ -40,12 +40,10 @@ function drop_first($collection, callable $callback)
 
     $drop = true;
     foreach ($collection as $index => $element) {
-
         if ($drop) {
             if ($callback($element, $index, $collection)) {
                 continue;
             }
-
             $drop = false;
         }
 

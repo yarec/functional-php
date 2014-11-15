@@ -42,7 +42,6 @@ function invoke_last($collection, $methodName, array $arguments = [])
     $lastCallback = null;
 
     foreach ($collection as $element) {
-
         $callback = [$element, $methodName];
         if (is_callable($callback)) {
             $lastCallback = $callback;

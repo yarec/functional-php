@@ -22,7 +22,7 @@
  */
 
 call_user_func(function() {
-    static $symbols = array(
+    static $symbols = [
         'Functional\\Exceptions\\InvalidArgumentException',
         'Functional\\every',
         'Functional\\some',
@@ -65,7 +65,7 @@ call_user_func(function() {
         'Functional\\zip',
         'Functional\\head',
         'Functional\\tail',
-    );
+    ];
     static $basePath = __DIR__;
 
     foreach ($symbols as $symbol) {

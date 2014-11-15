@@ -3,6 +3,8 @@ if (!extension_loaded('functional')) {
     die('Could not run benchmark: functional extension not loaded');
 }
 
+require_once __DIR__ . '/../../src/Functional/Exceptions/InvalidArgumentException.php';
+
 ini_set('memory_limit', '2G');
 
 $sourceFiles = new RegexIterator(

@@ -1,4 +1,5 @@
-# Functional PHP: Functional primitives for PHP [![Build Status](https://secure.travis-ci.org/lstrojny/functional-php.svg)](http://travis-ci.org/lstrojny/functional-php) [![Dependency Status](https://www.versioneye.com/user/projects/523ed780632bac1b1100c359/badge.png)](https://www.versioneye.com/user/projects/523ed780632bac1b1100c359)
+# Functional PHP: Functional primitives for PHP
+[![Build Status](https://secure.travis-ci.org/lstrojny/functional-php.svg)](http://travis-ci.org/lstrojny/functional-php) [![Dependency Status](https://www.versioneye.com/user/projects/523ed780632bac1b1100c359/badge.png)](https://www.versioneye.com/user/projects/523ed780632bac1b1100c359) [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/lstrojny/functional-php.svg)](http://isitmaintained.com/project/lstrojny/functional-php "Average time to resolve an issue") [![Percentage of issues still open](http://isitmaintained.com/badge/open/lstrojny/functional-php.svg)](http://isitmaintained.com/project/lstrojny/functional-php "Percentage of issues still open")
 
 A set of functional primitives for PHP, heavily inspired by [Scala’s traversable
 collection](http://www.scala-lang.org/archives/downloads/distrib/files/nightly/docs/library/scala/collection/Traversable.html),
@@ -333,10 +334,10 @@ Recombines arrays by index and applies a callback optionally
 use Functional as F;
 
 // Returns array(array('one', 1), array('two', 2), array('three', 3))
-Functional\zip(array('one', 'two', 'three'), array(1, 2, 3));
+F\zip(array('one', 'two', 'three'), array(1, 2, 3));
 
 // Returns array('one|1', 'two|2', 'three|3')
-Functional\zip(
+F\zip(
     array('one', 'two', 'three'),
     array(1, 2, 3),
     function($one, $two) {
@@ -345,6 +346,17 @@ Functional\zip(
 );
 ```
 
+### Functional\with()
+Invoke a callback on a value if the value is not null
+
+```php
+<?php
+use Functional as F;
+
+F\with($value, function($value) {
+    $this->doSomethingWithValue($value);
+});
+```
 
 ### Additional functions:
 

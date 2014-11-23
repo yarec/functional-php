@@ -31,10 +31,8 @@ use Functional\Exceptions\InvalidArgumentException;
  * @param callable $callback
  * @return mixed
  */
-function with($value, $callback)
+function with($value, callable $callback = null)
 {
-    InvalidArgumentException::assertCallback($callback, __FUNCTION__, 2);
-
     if ($value === null) {
         return null;
     }

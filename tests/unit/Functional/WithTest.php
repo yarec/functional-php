@@ -60,7 +60,7 @@ class WithTest extends AbstractTestCase
 
     function testPassNonCallable()
     {
-        $this->expectArgumentError("Functional\\with() expects parameter 2 to be a valid callback, function 'undefinedFunction' not found or invalid function name");
+        $this->expectArgumentError("Functional\\with");
         with(null, 'undefinedFunction');
     }
 }

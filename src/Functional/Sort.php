@@ -26,30 +26,29 @@ use Functional\Exceptions\InvalidArgumentException;
 use Traversable;
 
 /**
- * Returns the average of all numeric values in the array or null if no numeric value was found
+ * Sorts a collection with a user-defined function, optionally preserving array keys
  *
  * @param Traversable|array $collection
- * @return null|float|int
+ * @param callable $callback
+ * @param bool $preserveKeys
+ * @return array
  */
-function average($collection)
+function sort($collection, callable $callback, $preserveKeys = false)
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
+    InvalidArgumentException::assertBoolean($preserveKeys, __FUNCTION__, 3);
 
-    $sum = null;
-    $divisor = 0;
-
-    foreach ($collection as $element) {
-
-        if (is_numeric($element)) {
-            $sum += $element;
-            ++$divisor;
-        }
-
+    if ($collection instanceof \Traversable) {
+        $array = iterator_to_array($collection);
+    } else {
+        $array = $collection;
     }
 
-    if ($sum === null) {
-        return null;
-    }
+    $fn = $preserveKeys ? 'uasort' : 'usort';
 
-    return $sum / $divisor;
+    $fn($array, function ($left, $right) use ($callback, $collection) {
+        return $callback($left, $right, $collection);
+    });
+
+    return $array;
 }

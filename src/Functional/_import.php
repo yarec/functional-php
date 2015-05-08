@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (C) 2011-2014 by Lars Strojny <lstrojny@php.net>
+ * Copyright (C) 2011-2015 by Lars Strojny <lstrojny@php.net>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -67,6 +67,7 @@ call_user_func(function() {
         'Functional\\head',
         'Functional\\tail',
         'Functional\\with',
+        'Functional\\sort',
     ];
     static $basePath = __DIR__;
 

@@ -53,8 +53,8 @@ function zip($arg)
 
         if ($callback !== null) {
             /** @var callable $callback */
-            #$zipped = $callback(...$zipped);
-            $zipped = call_user_func_array($callback, $args);
+//            $zipped = $callback(...$zipped);
+            $zipped = call_user_func_array($callback, $zipped);
         }
 
         $result[] = $zipped;

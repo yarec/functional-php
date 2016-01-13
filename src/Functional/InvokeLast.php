@@ -54,5 +54,5 @@ function invoke_last($collection, $methodName, array $arguments = [])
     }
 
     #return $lastCallback(...$arguments);
-    return call_user_func_array($callback, $arguments);
+    return call_user_func_array($lastCallback, $arguments);
 }

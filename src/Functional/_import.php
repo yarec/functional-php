@@ -79,7 +79,7 @@ call_user_func(function() {
         'Functional\\sequence_exponential',
         'Functional\\partial_left',
         'Functional\\partial_right',
-//        'Functional\\partial_any',
+        'Functional\\partial_any',
         'Functional\\partial_method',
         'Functional\\id',
         'Functional\\const_function',

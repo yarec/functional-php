@@ -43,7 +43,8 @@ function invoke_first($collection, $methodName, array $arguments = [])
 
         $callback = [$element, $methodName];
         if (is_callable($callback)) {
-            return $callback(...$arguments);
+            #return $callback(...$arguments);
+            return call_user_func_array($callback, $arguments);
         }
     }
 

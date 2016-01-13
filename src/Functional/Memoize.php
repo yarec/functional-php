@@ -74,7 +74,8 @@ function memoize(callable $callback = null, $arguments = [], $key = null)
     }
 
     if (!isset($storage[$key]) && !array_key_exists($key, $storage)) {
-        $storage[$key] = $callback(...$arguments);
+        #$storage[$key] = $callback(...$arguments);
+        $storage[$key] = $zipped = call_user_func_array($callback, $arguments);
     }
 
     return $storage[$key];

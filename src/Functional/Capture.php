@@ -31,8 +31,10 @@ namespace Functional;
  */
 function capture(callable $callback, &$result)
 {
-    return function (...$args) use ($callback, &$result) {
-        $result = $callback(...$args);
+    return function ($args) use ($callback, &$result) {
+        $args = func_get_args();
+        #$result = $callback(...$args);
+        $result = call_user_func_array($callback, $args);
 
         return $result;
     };

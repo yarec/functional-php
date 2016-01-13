@@ -40,6 +40,7 @@ function partial_method($methodName, array $arguments = [], $defaultValue = null
         if (!is_callable([$object, $methodName])) {
             return $defaultValue;
         }
-        return $object->{$methodName}(...$arguments);
+        #return $object->{$methodName}(...$arguments);
+        return  call_user_func_array(array($object, $methodName), $arguments);
     };
 }

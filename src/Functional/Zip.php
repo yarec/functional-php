@@ -31,8 +31,9 @@ use Traversable;
  * @param $args array|Traversable $collection One or more callbacks
  * @return array
  */
-function zip(...$args)
+function zip($arg)
 {
+    $args = func_get_args();
     $callback = null;
     if (is_callable(end($args))) {
         $callback = array_pop($args);
@@ -52,7 +53,8 @@ function zip(...$args)
 
         if ($callback !== null) {
             /** @var callable $callback */
-            $zipped = $callback(...$zipped);
+            #$zipped = $callback(...$zipped);
+            $zipped = call_user_func_array($callback, $args);
         }
 
         $result[] = $zipped;

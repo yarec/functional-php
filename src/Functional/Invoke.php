@@ -47,7 +47,7 @@ function invoke($collection, $methodName, array $arguments = [])
 
         $callback = [$element, $methodName];
         if (is_callable($callback)) {
-            $value = $callback(...$arguments);
+            $value = call_user_func_array($callback, $arguments);
         }
 
         $aggregation[$index] = $value;

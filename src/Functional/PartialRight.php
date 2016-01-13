@@ -29,9 +29,11 @@ namespace Functional;
  * @param array $arguments
  * @return callable
  */
-function partial_right(callable $callback, ...$arguments)
+function partial_right(callable $callback)
 {
-    return function (...$innerArguments) use ($callback, $arguments) {
-        return $callback(...array_merge($innerArguments, $arguments));
+    $arguments = array_slice(func_get_args(), 1);
+    return function ($innerArguments) use ($callback, $arguments) {
+        return  call_user_func_array($callback, array_merge($arguments, $innerArguments));
+        #return $callback(...array_merge($innerArguments, $arguments));
     };
 }

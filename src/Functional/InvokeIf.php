@@ -36,7 +36,8 @@ function invoke_if($object, $methodName, array $methodArguments = [], $defaultVa
 {
     $callback = [$object, $methodName];
     if (is_callable($callback)) {
-        return $callback(...$methodArguments);
+        #return $callback(...$methodArguments);
+        return call_user_func_array($callback, $methodArguments);
     }
 
     return $defaultValue;
